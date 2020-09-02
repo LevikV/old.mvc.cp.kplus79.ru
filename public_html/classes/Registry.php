@@ -24,3 +24,4 @@ Class Registry {
         unset($this->vars[$key]);
     }
 }
+?>
