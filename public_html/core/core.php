@@ -1,9 +1,9 @@
 <?php
 //Загрузка классов на лету
-function __autoload($className) {
+spl_autoload_register(function($className) {
     $filename = strtolower($className) . '.php';
     //Определяем класс и находим для него путь
-    $expArr - explode('_', $className);
+    $expArr = explode('_', $className);
     if (empty($expArr[1]) OR $expArr[1] =='Base') {
         $folder = 'classes';
     } else {
@@ -27,7 +27,7 @@ function __autoload($className) {
     }
     //Подключаем файл с классом
     include ($file);
-}
+});
 
 //Запускаем реестр (хранилище)
 $registry = new Registry;
