@@ -20,7 +20,7 @@ spl_autoload_register(function($className) {
         }
     }
     //Путь до класса
-    $file = SITE_PATH . $folder . DS . $filename;
+    $file = SITE_PATH . DS . $folder . DS . $filename;
     //Проверяем наличие файла
     if (file_exists($file) == false) {
         return false;
@@ -30,6 +30,6 @@ spl_autoload_register(function($className) {
 });
 
 //Запускаем реестр (хранилище)
-$registry = new Registry;
+$registry = new Registry();
 
 ?>
