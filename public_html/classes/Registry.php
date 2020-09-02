@@ -21,7 +21,7 @@ Class Registry {
 
     //Удаление данных
     function remove($var) {
-        unset($this->vars[$key]);
+        unset($this->vars['$key']);
     }
 }
 ?>
