@@ -16,7 +16,7 @@ $router = new Router($registry);
 //Записываем данные в реестр
 $registry->set ('router', $router);
 //Задаем путь до папки контроллеров
-$router->setPath (SITE_PATH . 'controllers');
+$router->setPath (SITE_PATH . DS . 'controllers');
 //Запускаем маршрутизатор
 $router->start();
 ?>

@@ -9,10 +9,10 @@ spl_autoload_register(function($className) {
     } else {
         switch (strtolower($expArr[0])) {
             case 'controller':
-                $folder = 'controller';
+                $folder = 'controllers';
                 break;
             case 'model':
-                $folder = 'model';
+                $folder = 'models';
                 break;
             default:
                 $folder = 'classes';
