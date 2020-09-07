@@ -11,7 +11,7 @@ Class Router {
 
     //Задаем путь до папки с контроллерами
     function setPath($path) {
-        $path = trim($path, '/\\');
+        $path = rtrim($path, '/\\');
         $path .= DS;
         //Если путь не существует, сигнализируем об этом
         if (is_dir($path) == false) {
@@ -28,7 +28,7 @@ Class Router {
             $route = 'index';
         }
         //Получаем части урл
-        $route = trim($route, '/\\');
+        $route = rtrim($route, '/\\');
         $parts = explode('/', $route);
 
         //Находим контроллер
