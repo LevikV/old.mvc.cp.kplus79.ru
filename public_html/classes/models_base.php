@@ -85,16 +85,131 @@ Abstract Class Model_Base {
     }
 
     //Составление запроса к БД
+    private function _getSelect($select) {
+        if (is_array($select)) {
+            $allQuery = array_keys($select);
+            array_walk($allQuery, function (&$val){
+                $val = strtoupper($val);
+            });
+            $querySql = "";
+            if (in_array("WHERE", $allQuery)) {
+                foreach($select as $key => $val) {
+                    if (strtoupper($key) == "WHERE") {
+                        $querySql .= " WHERE " . $val;
+                    }
+                }
+            }
+            if (in_array("GROUP", $allQuery)) {
+                foreach($select as $key => $val) {
+                    if (strtoupper($key) == "GROUP") {
+                        $querySql .= " GROUP BY " . $val;
+                    }
+                }
+            }
+            if (in_array("ORDER", $allQuery)) {
+                foreach($select as $key => $val) {
+                    if (strtoupper($key) == "ORDER") {
+                        $querySql .= " ORDER BY " . $val;
+                    }
+                }
+            }
+            if (in_array("LIMIT", $allQuery)) {
+                foreach($select as $key => $val) {
+                    if (strtoupper($key) == "LIMIT") {
+                        $querySql .= " LIMIT " . $val;
+                    }
+                }
+            }
+            return $querySql;
+        }
+        return false;
+    }
 
+    //Выполнение запроса к БД
+    private function _getResult($sql) {
+        try {
+            $db = $this->db;
+            $stmt = $db->query($sql);
+            $rows = $stmt->fetchAll();
+            $this->dataResult = $rows;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            exit;
+        }
+        return $rows;
+    }
 
+    //Удаление записей из БД по условию
+    public function deleteBySelect($select) {
+        $sql = $this->_getSelect($select);
+        try{
+            $db = $this->db;
+            $result = $db->exec("DELETE FROM $this->table " . $sql);
+        } catch (PDOException $e) {
+            echo 'Error : ' . $e->getMessage();
+            echo '<br/>Error sql : ' . "DELETE FROM $this->table " . $sql . "'";
+            exit();
+        }
+        return $result;
+    }
 
+    //Удаление строки из БД
+    public function deleteRow() {
+        $arrayAllFields = array_keys($this->fieldsTable());
+        array_walk($arrayAllFields, function (&$val) {
+            $val = strtoupper($val);
+        });
+        if (in_array('ID', $arrayAllFields)) {
+            try {
+                $db = $this->db;
+                $result = $db->exec("DELETE FROM $this->table WHERE 'id' = $this->id");
+                foreach ($arrayAllFields as $one) {
+                    unset($this->$one);
+                }
+            } catch (PDOException $e) {
+                echo 'Error : ' . $e->getMessage();
+                echo '<br/>Error sql : ' . "'DELETE FROM $this->table WHERE `id` = $this->id'";
+                exit();
+            }
+        }else {
+            echo "ID table `$this->table` not found";
+            exit();
+        }
+        return $result;
+    }
 
+    //Обновление записи. Происходит по ID
+    public function update(){
+        $arrayAllFields = array_keys($this->fieldsTable());
+        $arrayForSet = array();
+        foreach ($arrayAllFields as $field) {
+            if (!empty($this->$field)) {
+                if (strtoupper($field) != 'ID') {
+                    $arrayForSet[] = $field . ' ="' . $this->$field . '"';
+                }else {
+                    $whereID = $this->$field;
+                }
+            }
+        }
+        if (!isset($arrayForSet) OR empty($arrayForSet)) {
+            echo "Array data table `$this->table` empty!";
+            exit;
+        }
+        if (!isset($whereID) OR empty($whereID)) {
+            echo "ID table `$this->table` not found!";
+            exit;
+        }
+        $strForSet = implode(', ', $arrayForSet);
 
-
-
-
-
-
-
-
+        try {
+            $db = $this->db;
+            $stmt = $db->prepare("UPDATE $this->table SET $strForSet WHERE `id` = $whereID");
+            $result = $stmt->execute();
+        }catch (PDOException $e) {
+            echo 'Error : ' . $e->getMessage();
+            echo '<br/>Error sql : ' . "'UPDATE $this->table SET $strForSet WHERE `id` = $whereID'";
+            exit()
+        }
+        return $result;
+    }
 }
