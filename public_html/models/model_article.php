@@ -1,5 +1,5 @@
 <?php
-class Model_Articles extends Model_Base {
+class Model_Article extends Model_Base {
     public $id;
     public $id_category;
     public $title;

@@ -9,7 +9,7 @@ Class Controller_Article extends Controller_Base
             $select = array(
                 'where' => "id = $idArticle" //Условие
             );
-            $model = new Model_Articles($select);
+            $model = new Model_Article($select);
             $article = $model->getOneRow();
         } else {
             $article = false;

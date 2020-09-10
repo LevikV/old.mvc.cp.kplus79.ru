@@ -9,7 +9,7 @@ class Controller_Category extends Controller_Base {
             'where' => "is_active = 1 AND id_category = $idCategory", //условие
             'order' => 'date_create DESC' //сортируем
         );
-        $model = new Model_Articles($select); //Создаем объект модели
+        $model = new Model_Article($select); //Создаем объект модели
         $articles = $model->getAllRows(); //Получаем все строки
     } else {
         $articles = false;
