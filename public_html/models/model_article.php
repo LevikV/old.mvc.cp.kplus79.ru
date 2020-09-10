@@ -1,5 +1,5 @@
 <?php
-class Model_Article extends Model_Base {
+Class Model_Article Extends Model_Base {
     public $id;
     public $id_category;
     public $title;
@@ -8,8 +8,8 @@ class Model_Article extends Model_Base {
     public $date_create;
     public $is_active;
 
-    public function fieldsTable (){
-        return array (
+    public function fieldsTable(){
+        return array(
             'id' => 'Id',
             'id_category' => 'Id Category',
             'title' => 'Title',

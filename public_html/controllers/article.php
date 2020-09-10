@@ -1,17 +1,17 @@
 <?php
-Class Controller_Article extends Controller_Base
-{
-    public $layouts = 'first_layouts';
-    function index()
-    {
+// контролер
+Class Controller_Article Extends Controller_Base {
+
+    public $layouts = "first_layouts";
+    function index() {
         $idArticle = (isset($_GET['id'])) ? (int)$_GET['id'] : false;
-        if ($idArticle) {
+        if($idArticle){
             $select = array(
-                'where' => "id = $idArticle" //Условие
+                'where' => "id = $idArticle" // условие
             );
-            $model = new Model_Article($select);
-            $article = $model->getOneRow();
-        } else {
+            $model = new Model_Article($select); // создаем объект модели
+            $article = $model->getOneRow(); // получаем статью
+        }else{
             $article = false;
         }
 

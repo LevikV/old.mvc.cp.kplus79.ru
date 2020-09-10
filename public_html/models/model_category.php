@@ -1,10 +1,10 @@
 <?php
-class Model_Category extends Model_Base {
+Class Model_Category Extends Model_Base {
     public $id;
     public $name;
     public $is_active;
 
-    public function fieldsTable() {
+    public function fieldsTable(){
         return array(
             'id' => 'Id',
             'name' => 'Name',

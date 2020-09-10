@@ -1,5 +1,7 @@
 <?php
+
 Abstract Class Model_Base {
+
     protected $db;
     protected $table;
     private $dataResult;
@@ -15,7 +17,7 @@ Abstract Class Model_Base {
         $this->table = $tableName;
         //Обработка запроса, если нужно
         $sql = $this->_getSelect($select);
-        if ($sql) $this->_getResult("SELECT * FROM $this->table" . $sql);
+        if($sql) $this->_getResult("SELECT * FROM $this->table" . $sql);
     }
 
     //Получить имя таблицы
@@ -25,32 +27,32 @@ Abstract Class Model_Base {
 
     //Получить все записи
     function getAllRows() {
-        if (!isset($this->dataResult)) OR empty($this->dataResult) return false;
+        if ((!isset($this->dataResult)) OR empty($this->dataResult)) return false;
         return $this->dataResult;
     }
 
     //Получить одну запись
     function getOneRow() {
-        if (!isset($this->dataResult)) OR empty($this->dataResult) return false;
+        if ((!isset($this->dataResult)) OR empty($this->dataResult)) return false;
         return $this->dataResult[0];
     }
 
     //Извлечь из БД одну запись
-    function fetchOne() {
-        if (!isset($this->dataResult)) OR empty($this->dataResult) return false;
-        foreach ($this->dataResult[0] as $key => $val) {
+    function fetchOne(){
+        if ((!isset($this->dataResult)) OR empty($this->dataResult)) return false;
+        foreach($this->dataResult[0] as $key => $val){
             $this->$key = $val;
         }
         return true;
     }
 
     //Получить запись по id
-    function getRowBuId($id) {
-        try {
+    function getRowById($id){
+        try{
             $db = $this->db;
             $stmt = $db->query("SELECT * from $this->table WHERE id = $id");
             $row = $stmt->fetch();
-        }catch (PDOException $e) {
+        }catch(PDOException $e) {
             echo $e->getMessage();
             exit;
         }
@@ -62,23 +64,23 @@ Abstract Class Model_Base {
         $arrayAllFields = array_keys($this->fieldsTable());
         $arraySetFields = array();
         $arrayData = array();
-        foreach ($arrayAllFields as $field) {
-            if (!empty($this->$field)) {
+        foreach($arrayAllFields as $field){
+            if(!empty($this->$field)){
                 $arraySetFields[] = $field;
                 $arrayData[] = $this->$field;
             }
         }
-        $forQueryFields = implode(',', $arraySetFields);
+        $forQueryFields = implode(', ', $arraySetFields);
         $rangePlace = array_fill(0, count($arraySetFields), '?');
-        $forQueryPlace = implode(',', $rangePlace);
+        $forQueryPlace = implode(', ', $rangePlace);
 
         try {
             $db = $this->db;
             $stmt = $db->prepare("INSERT INTO $this->table ($forQueryFields) values ($forQueryPlace)");
             $result = $stmt->execute($arrayData);
-        }catch (PDOException $e) {
+        }catch(PDOException $e){
             echo 'Error : '.$e->getMessage();
-            echo '<br/Error sql : ' . "'INSERT INTO $this->table ($forQueryFields) values ($forQueryPlace)";
+            echo '<br/>Error sql : ' . "'INSERT INTO $this->table ($forQueryFields) values ($forQueryPlace)'";
             exit();
         }
         return $result;
@@ -86,36 +88,36 @@ Abstract Class Model_Base {
 
     //Составление запроса к БД
     private function _getSelect($select) {
-        if (is_array($select)) {
+        if(is_array($select)){
             $allQuery = array_keys($select);
-            array_walk($allQuery, function (&$val){
+            array_walk($allQuery, function(&$val){
                 $val = strtoupper($val);
             });
             $querySql = "";
-            if (in_array("WHERE", $allQuery)) {
-                foreach($select as $key => $val) {
-                    if (strtoupper($key) == "WHERE") {
+            if(in_array("WHERE", $allQuery)){
+                foreach($select as $key => $val){
+                    if(strtoupper($key) == "WHERE"){
                         $querySql .= " WHERE " . $val;
                     }
                 }
             }
-            if (in_array("GROUP", $allQuery)) {
-                foreach($select as $key => $val) {
-                    if (strtoupper($key) == "GROUP") {
+            if(in_array("GROUP", $allQuery)){
+                foreach($select as $key => $val){
+                    if(strtoupper($key) == "GROUP"){
                         $querySql .= " GROUP BY " . $val;
                     }
                 }
             }
-            if (in_array("ORDER", $allQuery)) {
-                foreach($select as $key => $val) {
-                    if (strtoupper($key) == "ORDER") {
+            if(in_array("ORDER", $allQuery)){
+                foreach($select as $key => $val){
+                    if(strtoupper($key) == "ORDER"){
                         $querySql .= " ORDER BY " . $val;
                     }
                 }
             }
-            if (in_array("LIMIT", $allQuery)) {
-                foreach($select as $key => $val) {
-                    if (strtoupper($key) == "LIMIT") {
+            if(in_array("LIMIT", $allQuery)){
+                foreach($select as $key => $val){
+                    if(strtoupper($key) == "LIMIT"){
                         $querySql .= " LIMIT " . $val;
                     }
                 }
@@ -126,13 +128,13 @@ Abstract Class Model_Base {
     }
 
     //Выполнение запроса к БД
-    private function _getResult($sql) {
-        try {
+    private function _getResult($sql){
+        try{
             $db = $this->db;
             $stmt = $db->query($sql);
             $rows = $stmt->fetchAll();
             $this->dataResult = $rows;
-        } catch (PDOException $e) {
+        }catch(PDOException $e) {
             echo $e->getMessage();
             exit;
         }
@@ -140,40 +142,40 @@ Abstract Class Model_Base {
     }
 
     //Удаление записей из БД по условию
-    public function deleteBySelect($select) {
+    public function deleteBySelect($select){
         $sql = $this->_getSelect($select);
-        try{
+        try {
             $db = $this->db;
             $result = $db->exec("DELETE FROM $this->table " . $sql);
-        } catch (PDOException $e) {
-            echo 'Error : ' . $e->getMessage();
-            echo '<br/>Error sql : ' . "DELETE FROM $this->table " . $sql . "'";
+        }catch(PDOException $e){
+            echo 'Error : '.$e->getMessage();
+            echo '<br/>Error sql : ' . "'DELETE FROM $this->table " . $sql . "'";
             exit();
         }
         return $result;
     }
 
     //Удаление строки из БД
-    public function deleteRow() {
+    public function deleteRow(){
         $arrayAllFields = array_keys($this->fieldsTable());
-        array_walk($arrayAllFields, function (&$val) {
+        array_walk($arrayAllFields, function(&$val){
             $val = strtoupper($val);
         });
-        if (in_array('ID', $arrayAllFields)) {
+        if(in_array('ID', $arrayAllFields)){
             try {
                 $db = $this->db;
-                $result = $db->exec("DELETE FROM $this->table WHERE 'id' = $this->id");
-                foreach ($arrayAllFields as $one) {
+                $result = $db->exec("DELETE FROM $this->table WHERE `id` = $this->id");
+                foreach($arrayAllFields as $one){
                     unset($this->$one);
                 }
-            } catch (PDOException $e) {
-                echo 'Error : ' . $e->getMessage();
+            }catch(PDOException $e){
+                echo 'Error : '.$e->getMessage();
                 echo '<br/>Error sql : ' . "'DELETE FROM $this->table WHERE `id` = $this->id'";
                 exit();
             }
-        }else {
-            echo "ID table `$this->table` not found";
-            exit();
+        }else{
+            echo "ID table `$this->table` not found!";
+            exit;
         }
         return $result;
     }
@@ -182,20 +184,20 @@ Abstract Class Model_Base {
     public function update(){
         $arrayAllFields = array_keys($this->fieldsTable());
         $arrayForSet = array();
-        foreach ($arrayAllFields as $field) {
-            if (!empty($this->$field)) {
-                if (strtoupper($field) != 'ID') {
-                    $arrayForSet[] = $field . ' ="' . $this->$field . '"';
-                }else {
+        foreach($arrayAllFields as $field){
+            if(!empty($this->$field)){
+                if(strtoupper($field) != 'ID'){
+                    $arrayForSet[] = $field . ' = "' . $this->$field . '"';
+                }else{
                     $whereID = $this->$field;
                 }
             }
         }
-        if (!isset($arrayForSet) OR empty($arrayForSet)) {
+        if(!isset($arrayForSet) OR empty($arrayForSet)){
             echo "Array data table `$this->table` empty!";
             exit;
         }
-        if (!isset($whereID) OR empty($whereID)) {
+        if(!isset($whereID) OR empty($whereID)){
             echo "ID table `$this->table` not found!";
             exit;
         }
@@ -205,10 +207,10 @@ Abstract Class Model_Base {
             $db = $this->db;
             $stmt = $db->prepare("UPDATE $this->table SET $strForSet WHERE `id` = $whereID");
             $result = $stmt->execute();
-        }catch (PDOException $e) {
-            echo 'Error : ' . $e->getMessage();
+        }catch(PDOException $e){
+            echo 'Error : '.$e->getMessage();
             echo '<br/>Error sql : ' . "'UPDATE $this->table SET $strForSet WHERE `id` = $whereID'";
-            exit()
+            exit();
         }
         return $result;
     }
