@@ -42,7 +42,7 @@ Class Router {
                 continue;
             }
             //Находим файл
-            if (is_file($fullpath . 'php')) {
+            if (is_file($fullpath . '.php')) {
                 $controller = $part;
                 array_shift($parts);
                 break;

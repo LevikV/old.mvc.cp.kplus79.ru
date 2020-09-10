@@ -26,7 +26,7 @@ Abstract Class Model_Base {
     //Получить все записи
     function getAllRows() {
         if (!isset($this->dataResult)) OR empty($this->dataResult) return false;
-        return $this->dataResult[0];
+        return $this->dataResult;
     }
 
     //Получить одну запись
