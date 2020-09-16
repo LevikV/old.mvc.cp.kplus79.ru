@@ -8,13 +8,20 @@ class Controller_Works extends Controller_Base {
         $date1 = $this->getLastWeek();
         $date2 = date("Y-m-d", time());
 
+        //Создаем модель с записями для указанного пользователя из
+        //интервала дат с пондельника прошлой недели
         $select = array(
-            'where' => "user_id = 2 AND DATE(date) BETWEEN '$date1' AND '$date2'"
+            'where' => "user_id = 2 AND DATE(date) BETWEEN '$date1' AND '$date2'",
+            "order" => 'date ASC'
             );
         $model = new Model_Works($select);
         $works = $model->getAllRows();
         //
-        //
+        foreach ($works as $key => $val) {
+
+        }
+
+        //Передаем параметры в шаблон контроллера
         $this->template->vars('datelastweek', $this->getLastWeek());
         $this->template->vars('works', $works);
         //В зависимости от типа пользователя выбираем нужное отображение

@@ -1,21 +1,16 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <div class="table-responsive">
-                <table class="table-hover">
+            <div class="table-responsive text-center">
+                <table class="table-hover raz table-striped">
                     <tr>
-                        <th></th>
+                        <th rowspan="2">Дата</th>
                         <th colspan="6">Картриджи</th>
                         <th colspan="2">Оборудование</th>
                         <th colspan="2">Заказы</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="5"></th>
                     </tr>
                     <tr>
-                        <th></th>
                         <th>Принято</th>
                         <th>Брак/гар.</th>
                         <th>Согласов.</th>
@@ -33,7 +28,55 @@
                         <th>Гаран.устр.</th>
                     </tr>
                     <tr>
-                        <td>11</td>
+                        <td>2020-09-11</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td>2020-09-11</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                    </tr>
+                    <tr>
+                        <td>2020-09-11</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
+                        <td>22</td>
+                        <td>33</td>
+                        <td>44</td>
                         <td>22</td>
                         <td>33</td>
                         <td>44</td>
