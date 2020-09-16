@@ -4,13 +4,12 @@ class Controller_Works extends Controller_Base {
     public $datelastweek;
 
     function index(){
+        //Определяем дату периода выборки работ
         $date1 = $this->getLastWeek();
         $date2 = date("Y-m-d", time());
-        //'where' => 'id=1',
-        //'where' => "date >= $date1 AND date <= $date2"
-        //'where' => "date >= 2020-09-01 AND date <= 2020-09-30"
+
         $select = array(
-            'where' => "date >= $date1"
+            'where' => "user_id = 2 AND DATE(date) BETWEEN '$date1' AND '$date2'"
             );
         $model = new Model_Works($select);
         $works = $model->getAllRows();
@@ -18,7 +17,8 @@ class Controller_Works extends Controller_Base {
         //
         $this->template->vars('datelastweek', $this->getLastWeek());
         $this->template->vars('works', $works);
-        $this->template->view('index');
+        //В зависимости от типа пользователя выбираем нужное отображение
+        $this->template->view('indexmm');
 
     }
 //Определение даты начала предидущей недели

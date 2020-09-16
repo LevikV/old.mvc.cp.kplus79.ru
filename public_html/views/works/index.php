@@ -5,11 +5,5 @@
     <h2>Таблица работ пуста!</h2>
 <?php endif; ?>
 <?php
-    echo $datelastweek;
-    //foreach ($d as $key => $val) {
-      //  echo $key;
-      //  echo "</br>";
-      //  echo $val;
-      //  echo "</br>";
-    //}
+
 ?>
