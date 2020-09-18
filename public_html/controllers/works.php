@@ -19,19 +19,19 @@ class Controller_Works extends Controller_Base {
         //
         //Заполняем массив работ предидущей недели
         //
-        $worksLastWeek = array(
+        /*$worksLastWeek = array(
             array(
                 'date' => $works[0]['date'],
                 $works[0]['joblist_id'] => $works[0]['count']
             )
-        );
+        );*/
         for ($i=0; $i < count($works); $i++){
             for ($j=0; $j < count($works); $j++) {
                 if (isset($worksLastWeek[$i]['date'])) {
                     if ($worksLastWeek[$i]['date'] == $works[$j]['date']) {
                         $worksLastWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
                     }
-                }elseif (!(in_array($works[$j]['date'], $worksLastWeek, true))) {
+                }elseif (!(in_array($works[$j]['date'], array_column($worksLastWeek, 'date'), true))) {
                     $worksLastWeek[$i]['date'] = $works[$j]['date'];
                     $worksLastWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
                 }
