@@ -27,76 +27,34 @@
                         <th>Резерв</th>
                         <th>Гаран.устр.</th>
                     </tr>
+                    <?php foreach ($worksLastWeek as $key => $val) {?>
                     <tr>
-                        <td>2020-09-11</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
+                        <td><?=$val['date']?></td>
+                        <td><?php if (isset($val['1'])) {echo $val['1'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['2'])) {echo $val['2'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['3'])) {echo $val['3'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['4'])) {echo $val['4'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['5'])) {echo $val['5'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['6'])) {echo $val['6'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['14'])) {echo $val['14'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['15'])) {echo $val['15'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['7'])) {echo $val['7'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['8'])) {echo $val['8'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['9'])) {echo $val['9'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['10'])) {echo $val['10'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['11'])) {echo $val['11'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['12'])) {echo $val['12'];} else {echo '0';} ?></td>
+                        <td><?php if (isset($val['13'])) {echo $val['13'];} else {echo '0';} ?></td>
                     </tr>
-                    <tr>
-                        <td>2020-09-11</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                    </tr>
-                    <tr>
-                        <td>2020-09-11</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                        <td>22</td>
-                        <td>33</td>
-                        <td>44</td>
-                    </tr>
+                    <?php } ?>
                 </table>
             </div>
         </div>
     </div>
 </div>
 
-
-
-<?php if ($works) : ?>
-    <h2><?//=$works['joblist_id'];?></h2>
-    <p><?//=$works['count'];?></p>
-<?php else: ?>
-    <h2>Таблица работ пуста!</h2>
-<?php endif; ?>
 <?php
-echo $datelastweek;
+
 //foreach ($d as $key => $val) {
 //  echo $key;
 //  echo "</br>";

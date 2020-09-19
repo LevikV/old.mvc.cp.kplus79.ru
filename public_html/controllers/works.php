@@ -19,34 +19,22 @@ class Controller_Works extends Controller_Base {
         //
         //Заполняем массив работ предидущей недели
         //
-        /*$worksLastWeek = array(
-            array(
-                'date' => $works[0]['date'],
-                $works[0]['joblist_id'] => $works[0]['count']
-            )
-        );*/
+        $worksLastWeek = array();
         for ($i=0; $i < count($works); $i++){
             for ($j=0; $j < count($works); $j++) {
                 if (isset($worksLastWeek[$i]['date'])) {
                     if ($worksLastWeek[$i]['date'] == $works[$j]['date']) {
                         $worksLastWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
                     }
-                }elseif (!(in_array($works[$j]['date'], array_column($worksLastWeek, 'date'), true))) {
+                }elseif (!in_array($works[$j]['date'], array_column($worksLastWeek, 'date'), true)) {
                     $worksLastWeek[$i]['date'] = $works[$j]['date'];
                     $worksLastWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
                 }
             }
         }
 
-
-
-        foreach ($works as $key => $val) {
-
-        }
-
         //Передаем параметры в шаблон контроллера
-        $this->template->vars('datelastweek', $this->getLastWeek());
-        $this->template->vars('works', $works);
+        $this->template->vars('worksLastWeek', $worksLastWeek);
         //В зависимости от типа пользователя выбираем нужное отображение
         $this->template->view('indexmm');
 
