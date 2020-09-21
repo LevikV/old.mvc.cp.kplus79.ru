@@ -2,8 +2,12 @@
 class Controller_Works extends Controller_Base {
     public $layouts = 'first_layouts';
     public $datelastweek;
+    public $timeLastWeek;
 
     function index(){
+        $worksCurrentWeek = array();
+        $worksLastWeek = array();
+        $worksLCWeek = array();
         //Определяем дату периода выборки работ
         $date1 = $this->getLastWeek();
         $date2 = date("Y-m-d", time());
@@ -16,25 +20,51 @@ class Controller_Works extends Controller_Base {
             );
         $model = new Model_Works($select);
         $works = $model->getAllRows();
-        //
-        //Заполняем массив работ предидущей недели
-        //
-        $worksLastWeek = array();
+
+        //Заполняем массив работ с прошлой недели + до текущей даты
+
         for ($i=0; $i < count($works); $i++){
             for ($j=0; $j < count($works); $j++) {
-                if (isset($worksLastWeek[$i]['date'])) {
-                    if ($worksLastWeek[$i]['date'] == $works[$j]['date']) {
-                        $worksLastWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
+                if (isset($worksLCWeek[$i]['date'])) {
+                    if ($worksLCWeek[$i]['date'] == $works[$j]['date']) {
+                        $worksLCWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
                     }
-                }elseif (!in_array($works[$j]['date'], array_column($worksLastWeek, 'date'), true)) {
-                    $worksLastWeek[$i]['date'] = $works[$j]['date'];
-                    $worksLastWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
+                }elseif (!in_array($works[$j]['date'], array_column($worksLCWeek, 'date'), true)) {
+                    $worksLCWeek[$i]['date'] = $works[$j]['date'];
+                    $worksLCWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
                 }
             }
         }
 
+        //Фрмируем массив работ предидущей недели с Пн.-Вс.
+        //и текущей недели с Пн.-текущая дата
+
+        for ($i=0; $i < 7; $i++) {
+            $worksLastWeek[$i]['date'] = date("Y-m-d", strtotime($this->getLastWeek()) + (86400 * $i));
+            if ($worksLCWeek[$i]['date'] === $worksLastWeek[$i]['date']) {
+                $worksLastWeek[$i] = $worksLCWeek[$i];
+            }
+            //И сразу формируем текущую неделю
+            $datet = date("Y-m-d", strtotime($this->getLastWeek()) + (86400 * ($i+7)));
+            if ($datet <= $date2) {
+                $worksCurrentWeek[$i]['date'] = date("Y-m-d", strtotime($this->getLastWeek()) + (86400 * ($i+7)));
+                foreach ($worksLCWeek as $key => $val) {
+                    if ($val['date'] === $worksCurrentWeek[$i]['date']) {
+                        $worksCurrentWeek[$i] = $val;
+                    }
+                }
+            }else{
+                continue;
+            }
+        }
+
+
+
+
+
         //Передаем параметры в шаблон контроллера
         $this->template->vars('worksLastWeek', $worksLastWeek);
+        $this->template->vars('worksCurrentWeek', $worksCurrentWeek);
         //В зависимости от типа пользователя выбираем нужное отображение
         $this->template->view('indexmm');
 
@@ -45,39 +75,39 @@ class Controller_Works extends Controller_Base {
         $d = getdate();
         switch ($d['wday']){
             case 0:
-                $timelastweek = $timenow - 13 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 13 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
             case 1:
-                $timelastweek = $timenow - 7 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 7 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
             case 2:
-                $timelastweek = $timenow - 8 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 8 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
             case 3:
-                $timelastweek = $timenow - 9 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 9 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
             case 4:
-                $timelastweek = $timenow - 10 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 10 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
             case 5:
-                $timelastweek = $timenow - 11 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 11 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
             case 6:
-                $timelastweek = $timenow - 12 * 86400;
-                $datelastweek = date("Y-m-d",$timelastweek);
-                //$datelastweek = getdate($timelastweek);
+                $timeLastWeek = $timenow - 12 * 86400;
+                $datelastweek = date("Y-m-d",$timeLastWeek);
+                //$datelastweek = getdate($timeLastWeek);
                 break;
         }
         return $datelastweek;

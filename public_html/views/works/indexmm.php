@@ -47,6 +47,24 @@
                         <td><?php if (isset($val['13'])) {echo $val['13'];} else {echo '0';} ?></td>
                     </tr>
                     <?php } ?>
+                    <tr>
+                        <th>Итого</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                        <th>0</th>
+                    </tr>
                 </table>
             </div>
         </div>

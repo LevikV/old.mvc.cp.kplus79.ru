@@ -112,10 +112,11 @@ hr {
 .raz {
     border-collapse: collapse;
     border-style: hidden;
+    font-size: 12px;
 }
 .raz td {
     border: 1px solid dodgerblue;
 }
 .raz th {
-    font-size: 13px;
+    font-size: 12px;
 }
