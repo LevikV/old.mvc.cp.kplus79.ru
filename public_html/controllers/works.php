@@ -8,6 +8,7 @@ class Controller_Works extends Controller_Base {
         $worksCurrentWeek = array();
         $worksLastWeek = array();
         $worksLCWeek = array();
+
         //Определяем дату периода выборки работ
         $date1 = $this->getLastWeek();
         $date2 = date("Y-m-d", time());
@@ -58,6 +59,12 @@ class Controller_Works extends Controller_Base {
             }
         }
 
+        //
+
+        $jobCountLW = $this->getCountJob($date1, date("Y-m-d", strtotime($date1) + 6 * 86400), $works);
+        $jobCountCW = $this->getCountJob(date("Y-m-d", strtotime($date1) + 7 * 86400), $date2, $works);
+
+
 
 
 
@@ -65,6 +72,8 @@ class Controller_Works extends Controller_Base {
         //Передаем параметры в шаблон контроллера
         $this->template->vars('worksLastWeek', $worksLastWeek);
         $this->template->vars('worksCurrentWeek', $worksCurrentWeek);
+        $this->template->vars('jobCountLW', $jobCountLW);
+        $this->template->vars('jobCountCW', $jobCountCW);
         //В зависимости от типа пользователя выбираем нужное отображение
         $this->template->view('indexmm');
 
@@ -111,5 +120,22 @@ class Controller_Works extends Controller_Base {
                 break;
         }
         return $datelastweek;
+    }
+
+    //Функция определения количества по виду работ за период
+
+    function getCountJob($date1, $date2, $works) {
+        $jobCount = array();
+
+        foreach ($works as $key => $val) {
+            if (($val['date'] >= $date1) AND ($val['date'] <= $date2)) {
+                if (isset($jobCount[$val['joblist_id']])) {
+                    $jobCount[$val['joblist_id']] = $jobCount[$val['joblist_id']] + $val['count'];
+                }else{
+                    $jobCount[$val['joblist_id']] = $val['count'];
+                }
+            }
+        }
+        return $jobCount;
     }
 }
