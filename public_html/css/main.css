@@ -113,6 +113,7 @@ hr {
     border-collapse: collapse;
     border-style: hidden;
     font-size: 12px;
+    width: 100%;
 }
 .raz td {
     border: 1px solid dodgerblue;
@@ -123,3 +124,20 @@ hr {
 
 input {display: block; padding: 0; margin: 0; border: 0; width: 100%;}
 td {margin: 0; padding: 0;}
+
+span {
+    width: 100%;
+    display: block;
+}
+.raz td:first-child {
+    display: block;
+    width: 70px;
+    border: none;
+}
+
+#col_b_55 {
+    display: block;
+    width: 57px;
+}
+/*input {display: block !important; padding: 0 !important; margin: 0 !important; border: 0 !important; width: 100% !important; border-radius: 0 !important; line-height: 1 !important;}
+td {margin: 0 !important; padding: 0 !important;}*/

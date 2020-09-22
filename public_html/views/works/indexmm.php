@@ -1,9 +1,9 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-12 text-center">
             <h4>Работы за предидущую неделю</h4>
         </div>
-        <div class="col">
+        <div class="col-10">
             <div class="table-responsive">
                 <table class="table-hover raz table-striped text-center" align="center">
                     <tr>
@@ -15,7 +15,7 @@
                     </tr>
                     <tr>
                         <th>Принято</th>
-                        <th>Брак/гар.</th>
+                        <th id="col_b_55">Брак/гар.</th>
                         <th>Согласов.</th>
                         <th>Выдано</th>
                         <th>Турбо</th>
@@ -71,10 +71,12 @@
                 </table>
             </div>
         </div>
+    </div>
+    <div class="row justify-content-center">
         <div class="col-12 text-center">
             <h4>Работы за текущую неделю</h4>
         </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="table-responsive">
                 <table class="table-hover raz table-striped text-center" align="center">
                     <tr>
@@ -140,28 +142,28 @@
                         <th><?php if (isset($jobCountCW['13'])) {echo $jobCountCW['13'];} else {echo '0';} ?></th>
                     </tr>
                     <tr>
-                        <td colspan="16">Добавить новую запись</td>
+                        <th colspan="16">Добавить новую запись</th>
                     </tr>
                     <tr>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
+                        <td><input type="date" style="width: 70px"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center" style="width: 55px"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center" style="width: 35px"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
+                        <td><input type="number" class="text-center"></td>
                     </tr>
-
                 </table>
+
             </div>
         </div>
     </div>
