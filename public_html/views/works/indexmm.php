@@ -1,13 +1,11 @@
-<div class="container">
-    <div class="row text-center">
-        <div class="col">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
             <h4>Работы за предидущую неделю</h4>
         </div>
-    </div>
-    <div class="row">
         <div class="col">
             <div class="table-responsive">
-                <table class="table-hover raz table-striped text-center">
+                <table class="table-hover raz table-striped text-center" align="center">
                     <tr>
                         <th rowspan="2">Дата</th>
                         <th colspan="6">Картриджи</th>
@@ -73,18 +71,12 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row text-center">
-        <div class="col">
+        <div class="col-12 text-center">
             <h4>Работы за текущую неделю</h4>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div>
-                <table class="table-hover raz table-striped text-center">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table-hover raz table-striped text-center" align="center">
                     <tr>
                         <th rowspan="2">Дата</th>
                         <th colspan="6">Картриджи</th>
@@ -151,7 +143,7 @@
                         <td colspan="16">Добавить новую запись</td>
                     </tr>
                     <tr>
-                        <td><input type="date"></td>
+                        <td><input type="number"></td>
                         <td><input type="number"></td>
                         <td><input type="number"></td>
                         <td><input type="number"></td>
@@ -168,6 +160,7 @@
                         <td><input type="number"></td>
                         <td><input type="number"></td>
                     </tr>
+
                 </table>
             </div>
         </div>

@@ -59,7 +59,7 @@ class Controller_Works extends Controller_Base {
             }
         }
 
-        //
+        //Получаем количество по каждому виду работ за периоды
 
         $jobCountLW = $this->getCountJob($date1, date("Y-m-d", strtotime($date1) + 6 * 86400), $works);
         $jobCountCW = $this->getCountJob(date("Y-m-d", strtotime($date1) + 7 * 86400), $date2, $works);
