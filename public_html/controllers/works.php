@@ -122,6 +122,25 @@ class Controller_Works extends Controller_Base {
         return $datelastweek;
     }
 
+    //Метод добавления записи
+
+    function add(){
+        //
+        $model = new Model_Works();
+        $model->user_id = 2;
+        $model->date = $_GET['date'];
+        for ($i=1; $i<16; $i++) {
+            $model->joblist_id = $i;
+            $model->count = (isset($_GET['jobID_'.$i])) ? (int)$_GET['jobID_'.$i] : false;
+            if ($model->count) {$model->save();}
+        }
+
+
+
+        $this->index();
+        //$this->template->view('addresult');
+    }
+
     //Функция определения количества по виду работ за период
 
     function getCountJob($date1, $date2, $works) {

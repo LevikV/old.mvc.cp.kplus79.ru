@@ -3,12 +3,12 @@ body, html {
     height: 100%;
     color: #222;
 }
-hr {
+/*hr {
     height: 12px;
     color: red;
     background-color: red;
     margin: 0px;
-}
+}*/
 .btn-danger {
     background: red;
     font-weight: bold;
@@ -116,7 +116,7 @@ hr {
     width: 100%;
 }
 .raz td {
-    border: 1px solid dodgerblue;
+    border: 1px solid darkgray;
 }
 .raz th {
     font-size: 12px;
@@ -141,3 +141,8 @@ span {
 }
 /*input {display: block !important; padding: 0 !important; margin: 0 !important; border: 0 !important; width: 100% !important; border-radius: 0 !important; line-height: 1 !important;}
 td {margin: 0 !important; padding: 0 !important;}*/
+
+.vidzetBlock {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}

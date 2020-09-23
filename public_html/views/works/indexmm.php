@@ -141,31 +141,40 @@
                         <th><?php if (isset($jobCountCW['12'])) {echo $jobCountCW['12'];} else {echo '0';} ?></th>
                         <th><?php if (isset($jobCountCW['13'])) {echo $jobCountCW['13'];} else {echo '0';} ?></th>
                     </tr>
-                    <form action="/works/add" method="get">
+                    <form action="/works/add/" method="get">
+
                         <tr>
                             <th colspan="16"><button type="submit" class="btn-link" style="border: none;">Добавить новую запись</button> </th>
                         </tr>
                         <tr>
                             <td><input type="date" name="date" style="width: 70px"></td>
-                            <td><input type="number" name="jobID" class="text-center"></td>
-                            <td><input type="number" class="text-center" style="width: 55px"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center" style="width: 35px"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
-                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" name="jobID_1" class="text-center"></td>
+                            <td><input type="number" name="jobID_2" class="text-center" style="width: 55px"></td>
+                            <td><input type="number" name="jobID_3" class="text-center"></td>
+                            <td><input type="number" name="jobID_4" class="text-center"></td>
+                            <td><input type="number" name="jobID_5" class="text-center" style="width: 35px"></td>
+                            <td><input type="number" name="jobID_6" class="text-center"></td>
+                            <td><input type="number" name="jobID_14" class="text-center"></td>
+                            <td><input type="number" name="jobID_15" class="text-center"></td>
+                            <td><input type="number" name="jobID_7" class="text-center"></td>
+                            <td><input type="number" name="jobID_8" class="text-center"></td>
+                            <td><input type="number" name="jobID_9" class="text-center"></td>
+                            <td><input type="number" name="jobID_10" class="text-center"></td>
+                            <td><input type="number" name="jobID_11" class="text-center"></td>
+                            <td><input type="number" name="jobID_12" class="text-center"></td>
+                            <td><input type="number" name="jobID_13" class="text-center"></td>
                         </tr>
                     </form>
                 </table>
             </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row vidzetBlock">
+        <div class="col text-center">
+            <h3>Блок с виджетами-результатами за месяц</h3>
         </div>
     </div>
 </div>
