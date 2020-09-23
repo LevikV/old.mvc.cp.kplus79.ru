@@ -141,29 +141,30 @@
                         <th><?php if (isset($jobCountCW['12'])) {echo $jobCountCW['12'];} else {echo '0';} ?></th>
                         <th><?php if (isset($jobCountCW['13'])) {echo $jobCountCW['13'];} else {echo '0';} ?></th>
                     </tr>
-                    <tr>
-                        <th colspan="16">Добавить новую запись</th>
-                    </tr>
-                    <tr>
-                        <td><input type="date" style="width: 70px"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center" style="width: 55px"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center" style="width: 35px"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                        <td><input type="number" class="text-center"></td>
-                    </tr>
+                    <form action="/works/add" method="get">
+                        <tr>
+                            <th colspan="16"><button type="submit" class="btn-link" style="border: none;">Добавить новую запись</button> </th>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="date" style="width: 70px"></td>
+                            <td><input type="number" name="jobID" class="text-center"></td>
+                            <td><input type="number" class="text-center" style="width: 55px"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center" style="width: 35px"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                            <td><input type="number" class="text-center"></td>
+                        </tr>
+                    </form>
                 </table>
-
             </div>
         </div>
     </div>
