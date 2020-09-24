@@ -131,13 +131,13 @@ class Controller_Works extends Controller_Base {
         $model->date = $_GET['date'];
         for ($i=1; $i<16; $i++) {
             $model->joblist_id = $i;
-            $model->count = (isset($_GET['jobID_'.$i])) ? (int)$_GET['jobID_'.$i] : false;
+            $model->count = (isset($_GET['jobID_'.$i]) AND ($_GET['jobID_'.$i] > 0)) ? (int)$_GET['jobID_'.$i] : false;
             if ($model->count) {$model->save();}
         }
-
-
-
-        $this->index();
+        //Открываем нужную нам страницу страницу
+        header('Location: /works');
+        exit();
+        //$this->index();
         //$this->template->view('addresult');
     }
 

@@ -141,7 +141,8 @@
                         <th><?php if (isset($jobCountCW['12'])) {echo $jobCountCW['12'];} else {echo '0';} ?></th>
                         <th><?php if (isset($jobCountCW['13'])) {echo $jobCountCW['13'];} else {echo '0';} ?></th>
                     </tr>
-                    <form action="/works/add/" method="get">
+                    <form action="/" method="get">
+                        <input type="hidden" name="route" value="works/add">
 
                         <tr>
                             <th colspan="16"><button type="submit" class="btn-link" style="border: none;">Добавить новую запись</button> </th>
