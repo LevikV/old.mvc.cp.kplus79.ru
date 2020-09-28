@@ -8,6 +8,12 @@ Class Controller_Index Extends Controller_Base {
         //$model = new Model_Users();
         //$userInfo = $model->getUser();
         //$this->template->vars('userInfo', $userInfo);
-        $this->template->view('index');
+        if (isset($_SESSION['userID'])) {
+            $this->template->view('index');
+        }else{
+            header('Location: /users');
+            exit();
+        }
+
     }
 }

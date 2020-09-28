@@ -9,6 +9,9 @@ Abstract Class Controller_Base {
 
     //В конструкторе подключаем шаблоны
     function __construct($registry) {
+        //Открываем сессию для любого контроллера
+        session_start();
+        //
         $this->registry = $registry;
         //шаблоны
         $this->template = new Template($this->layouts, get_class($this));

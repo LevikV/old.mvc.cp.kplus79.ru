@@ -148,22 +148,22 @@
                             <th colspan="16"><button type="submit" class="btn-link" style="border: none;">Добавить новую запись</button> </th>
                         </tr>
                         <tr>
-                            <td><input type="date" name="date" style="width: 70px"></td>
-                            <td><input type="number" name="jobID_1" class="text-center"></td>
-                            <td><input type="number" name="jobID_2" class="text-center" style="width: 55px"></td>
-                            <td><input type="number" name="jobID_3" class="text-center"></td>
-                            <td><input type="number" name="jobID_4" class="text-center"></td>
-                            <td><input type="number" name="jobID_5" class="text-center" style="width: 35px"></td>
-                            <td><input type="number" name="jobID_6" class="text-center"></td>
-                            <td><input type="number" name="jobID_14" class="text-center"></td>
-                            <td><input type="number" name="jobID_15" class="text-center"></td>
-                            <td><input type="number" name="jobID_7" class="text-center"></td>
-                            <td><input type="number" name="jobID_8" class="text-center"></td>
-                            <td><input type="number" name="jobID_9" class="text-center"></td>
-                            <td><input type="number" name="jobID_10" class="text-center"></td>
-                            <td><input type="number" name="jobID_11" class="text-center"></td>
-                            <td><input type="number" name="jobID_12" class="text-center"></td>
-                            <td><input type="number" name="jobID_13" class="text-center"></td>
+                            <td><input type="date" name="date" class="inputt" style="width: 70px"></td>
+                            <td><input type="number" name="jobID_1" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_2" class="text-center inputt" style="width: 55px"></td>
+                            <td><input type="number" name="jobID_3" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_4" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_5" class="text-center inputt" style="width: 35px"></td>
+                            <td><input type="number" name="jobID_6" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_14" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_15" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_7" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_8" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_9" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_10" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_11" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_12" class="text-center inputt"></td>
+                            <td><input type="number" name="jobID_13" class="text-center inputt"></td>
                         </tr>
                     </form>
                 </table>
