@@ -6,8 +6,8 @@ class Controller_Works extends Controller_Base {
 
     function index(){
         $worksCurrentWeek = array();
-        $worksLastWeek = array();
-        $worksLCWeek = array();
+        $worksLastWeek = array(array());
+        $worksLCWeek = array(array());
 
         //Определяем дату периода выборки работ
         $date1 = $this->getLastWeek();
@@ -15,8 +15,9 @@ class Controller_Works extends Controller_Base {
 
         //Создаем модель с записями для указанного пользователя из
         //интервала дат с пондельника прошлой недели
+        $userID = $_SESSION['userID'];
         $select = array(
-            'where' => "user_id = 2 AND DATE(date) BETWEEN '$date1' AND '$date2'",
+            'where' => "user_id = '$userID' AND DATE(date) BETWEEN '$date1' AND '$date2'",
             "order" => 'date ASC'
             );
         $model = new Model_Works($select);
@@ -42,9 +43,12 @@ class Controller_Works extends Controller_Base {
 
         for ($i=0; $i < 7; $i++) {
             $worksLastWeek[$i]['date'] = date("Y-m-d", strtotime($this->getLastWeek()) + (86400 * $i));
-            if ($worksLCWeek[$i]['date'] === $worksLastWeek[$i]['date']) {
-                $worksLastWeek[$i] = $worksLCWeek[$i];
+            if (isset($worksLCWeek[$i]['date']) && isset($worksLastWeek[$i]['date'])) {
+                if ($worksLCWeek[$i]['date'] === $worksLastWeek[$i]['date']) {
+                    $worksLastWeek[$i] = $worksLCWeek[$i];
+                }
             }
+
             //И сразу формируем текущую неделю
             $datet = date("Y-m-d", strtotime($this->getLastWeek()) + (86400 * ($i+7)));
             if ($datet <= $date2) {
@@ -127,7 +131,7 @@ class Controller_Works extends Controller_Base {
     function add(){
         //
         $model = new Model_Works();
-        $model->user_id = 2;
+        $model->user_id = $_SESSION['userID'];
         $model->date = $_GET['date'];
         for ($i=1; $i<16; $i++) {
             $model->joblist_id = $i;

@@ -5,7 +5,7 @@ class Controller_Users extends Controller_Base{
     function index()
     {
         if (isset($_SESSION['userID'])){
-            //
+            $this->template->view('index');
         }else{
             $this->login();
         }
