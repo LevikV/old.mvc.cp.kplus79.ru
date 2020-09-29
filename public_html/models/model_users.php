@@ -1,5 +1,5 @@
 <?php
-Class Model_Users Extends Models_Base {
+class Model_Users extends Model_Base {
     public $id;
     public $name;
     public $last_name;
