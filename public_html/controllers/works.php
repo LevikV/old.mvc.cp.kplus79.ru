@@ -148,7 +148,48 @@ class Controller_Works extends Controller_Base {
     //Метод изменения записи
 
     function edit() {
-        //
+        if (isset($_SESSION['userID'])){ //Проверяем, авторизован ли пользователь
+            //Если была отправка формы, то производим необходимые действия,
+            //если отправки не было, то выводим страницу редактирования
+            //выбранной записи по дате
+            if (isset($_POST['edit'])){
+                //Выполняем действия по обновлению записи
+            }else{
+                //Выводим страницу редактирования записи
+                $d = $_GET['date'];
+                $userID = $_SESSION['userID'];
+                //
+                $select = array(
+                    'where' => "user_id = '$userID' AND DATE(date) BETWEEN '$d' AND '$d'",
+                    "order" => 'date ASC'
+                );
+                $model = new Model_Works($select);
+                $works = $model->getAllRows();
+                //Заполняем массив работ с прошлой недели + до текущей даты (можно выделить в отдельную функцию)
+                $worksLCWeek = array(array());
+                for ($i=0; $i < count($works); $i++){
+                    for ($j=0; $j < count($works); $j++) {
+                        if (isset($worksLCWeek[$i]['date'])) {
+                            if ($worksLCWeek[$i]['date'] == $works[$j]['date']) {
+                                $worksLCWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
+                            }
+                        }elseif (!in_array($works[$j]['date'], array_column($worksLCWeek, 'date'), true)) {
+                            $worksLCWeek[$i]['date'] = $works[$j]['date'];
+                            $worksLCWeek[$i][$works[$j]['joblist_id']] = $works[$j]['count'];
+                        }
+                    }
+                }
+
+                //
+                $this->template->vars('worksLCWeek', $worksLCWeek);
+                $this->template->vars('date', $d);
+                $this->template->view('edit');
+            }
+        }else{
+            //
+
+        }
+
     }
 
     //Функция определения количества по виду работ за период

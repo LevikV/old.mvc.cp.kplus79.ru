@@ -32,7 +32,7 @@
                     </tr>
                     <?php foreach ($worksLastWeek as $key => $val) {?>
                     <tr>
-                        <td><?=$val['date']?></td>
+                        <td><a href="/?route=works/edit&date=<?php echo $val['date']; ?>"><?php echo $val['date']; ?></a></td>
                         <td><?php if (isset($val['1'])) {echo $val['1'];} else {echo '0';} ?></td>
                         <td><?php if (isset($val['2'])) {echo $val['2'];} else {echo '0';} ?></td>
                         <td><?php if (isset($val['3'])) {echo $val['3'];} else {echo '0';} ?></td>
@@ -105,7 +105,7 @@
                     </tr>
                     <?php foreach ($worksCurrentWeek as $key => $val) {?>
                         <tr>
-                            <td><?=$val['date']?></td>
+                            <td><a href="/?route=works/edit&date=<?php echo $val['date']; ?>"><?php echo $val['date']; ?></a></td>
                             <td><?php if (isset($val['1'])) {echo $val['1'];} else {echo '0';} ?></td>
                             <td><?php if (isset($val['2'])) {echo $val['2'];} else {echo '0';} ?></td>
                             <td><?php if (isset($val['3'])) {echo $val['3'];} else {echo '0';} ?></td>
