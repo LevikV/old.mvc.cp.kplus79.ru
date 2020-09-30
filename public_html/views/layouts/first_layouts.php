@@ -30,26 +30,22 @@
         </button>
     </div>
     <div class="collapse navbar-collapse" id="menu">
+        <?php if (isset($_SESSION['userID'])){ ?>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Главная</a>
+                <a class="nav-link" href="/">Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Услуги</a>
+                <a class="nav-link" href="/works">Работы</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Турбо</a>
+                <a class="nav-link" href="#">Отчеты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Отзывы</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Цены</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Контакты</a>
+                <a class="nav-link" href="/users/logout">Выйти</a>
             </li>
         </ul>
+        <?php } ?>
     </div>
 </nav>
 

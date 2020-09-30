@@ -145,6 +145,12 @@ class Controller_Works extends Controller_Base {
         //$this->template->view('addresult');
     }
 
+    //Метод изменения записи
+
+    function edit() {
+        //
+    }
+
     //Функция определения количества по виду работ за период
 
     function getCountJob($date1, $date2, $works) {

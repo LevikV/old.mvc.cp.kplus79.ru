@@ -42,4 +42,13 @@ class Controller_Users extends Controller_Base{
             $this->template->view('login');
         }
     }
+
+    //Выход пользователя
+    function logout(){
+        $_SESSION = array();
+        setcookie(session_name(), '', time() - 2592000, '/');
+        session_destroy();
+        header('Location: /');
+        exit();
+    }
 }
