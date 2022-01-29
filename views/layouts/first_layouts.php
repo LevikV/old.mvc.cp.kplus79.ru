@@ -36,7 +36,7 @@
                 <a class="nav-link" href="/">Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/works">Работы</a>
+                <a class="nav-link" href="../../index.php">Работы</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Отчеты</a>

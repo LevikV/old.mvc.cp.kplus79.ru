@@ -3,13 +3,13 @@
 error_reporting(E_ALL);
 
 //Подключим конфиг
-include ('config.php');
+include('config.php');
 
 //Соединяемся с БД
 $dbObject = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
 
 //Подключаем ядро сайта
-include (SITE_PATH . DS . 'core' . DS . 'core.php');
+include(SITE_PATH . DS . 'core' . DS . 'core.php');
 
 //Загружаем роутер
 $router = new Router($registry);
